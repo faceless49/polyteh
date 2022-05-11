@@ -1,0 +1,10 @@
+{
+  "placeId": 1,
+  "name": "Saint Petersburg Main Marker",
+  "createdAt": "2022/05/11",
+  "description": "The Capital of Culture",
+  "coordinates": [
+    59.939098,
+    30.315868
+  ]
+}

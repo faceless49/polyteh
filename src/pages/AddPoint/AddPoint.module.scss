@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  label {
+    min-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    + label {
+      margin-top: 10px;
+    }
+  }
+
+  input {
+    max-width: 150px;
+  }
+
+  .btn {
+    padding: 5px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(235, 87, 87, 1);
+      transition: background-color ease 0.3s;
+    }
+  }
+
+}
