@@ -94,13 +94,18 @@ export const AddPoint: FC<AddPointProps> = ({
         />
       </div>
       {!isAdded ? (
-        <MapContainer center={defaultPosition} zoom={13} scrollWheelZoom>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <GetCoordsHelper />
-        </MapContainer>
+        <>
+          <h3 className={styles.subtitle}>
+            Please click on the map for choose location popup
+          </h3>
+          <MapContainer center={defaultPosition} zoom={13} scrollWheelZoom>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <GetCoordsHelper />
+          </MapContainer>
+        </>
       ) : (
         <AddedPoint />
       )}
