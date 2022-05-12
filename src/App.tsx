@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import * as data from './data/places.json';
 
-import { Navigation } from 'components/Navigation';
+import { Navigation, NotFound } from 'components';
 import { PlaceType } from 'data';
 import { AddPoint, Home, PointsList } from 'pages';
 import './index.css';
@@ -31,7 +31,7 @@ const App = (): ReturnComponentType => {
     <div className="container">
       <Navigation />
       <Routes>
-        <Route path="/polyteh" element={<Home items={markers} />} />
+        <Route path="/" element={<Home items={markers} />} />
         <Route
           path="/addpoint"
           element={<AddPoint onAddMarkerClick={handleMarkerPost} />}
@@ -42,6 +42,7 @@ const App = (): ReturnComponentType => {
             <PointsList items={markers} onRemoveMarkerClick={handleMarkerDelete} />
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

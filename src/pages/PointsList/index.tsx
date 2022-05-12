@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 
-import { CardPoint } from 'components/CardPoint';
+import { CardPoint } from 'components';
 import { PlaceType } from 'data';
 import { Nullable, ReturnComponentType } from 'types';
 

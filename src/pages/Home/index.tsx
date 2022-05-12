@@ -4,7 +4,7 @@ import { FC, memo } from 'react';
 
 import { MapContainer, TileLayer } from 'react-leaflet';
 
-import { Markers } from 'components/Markers';
+import { Markers } from 'components';
 import { PlaceType } from 'data';
 import { ReturnComponentType } from 'types';
 
