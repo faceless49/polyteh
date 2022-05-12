@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
@@ -12,31 +12,38 @@ import { Nullable, ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
   const places = JSON.parse(JSON.stringify(data));
-
+  /**
+   * Our Mock data
+   * Or we can using redux and fetch places from api
+   */
   const [markers, setMarkers] = useState<PlaceType[]>([places]);
-  const handlePostMarker = (marker: PlaceType): Nullable<void> => {
-    setMarkers(prevState => [...prevState, marker]);
-  };
 
-  const handleDeleteMarker = (id: number): Nullable<void> => {
+  const handleMarkerPost = useCallback((marker: PlaceType): Nullable<void> => {
+    setMarkers(prevState => [...prevState, marker]);
+  }, []);
+
+  const handleMarkerDelete = useCallback((id: string): Nullable<void> => {
     const filteredMarkers = markers.filter(({ placeId }) => placeId !== id);
     setMarkers(filteredMarkers);
-  };
-
-  console.log(markers);
+  }, []);
 
   return (
-    <>
+    <div className="container">
       <Navigation />
       <Routes>
         <Route path="/" element={<Home items={markers} />} />
-        <Route path="/addpoint" element={<AddPoint onButtonClick={handlePostMarker} />} />
+        <Route
+          path="/addpoint"
+          element={<AddPoint onAddMarkerClick={handleMarkerPost} />}
+        />
         <Route
           path="/pointslist"
-          element={<PointsList items={markers} onButtonClick={handleDeleteMarker} />}
+          element={
+            <PointsList items={markers} onRemoveMarkerClick={handleMarkerDelete} />
+          }
         />
       </Routes>
-    </>
+    </div>
   );
 };
 

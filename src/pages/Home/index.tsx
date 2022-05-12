@@ -1,6 +1,6 @@
 import { defaultPosition } from 'constants';
 
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { MapContainer, TileLayer } from 'react-leaflet';
 
@@ -12,9 +12,8 @@ type HomePage = {
   items: PlaceType[];
 };
 
-export const Home: FC<HomePage> = ({ items }): ReturnComponentType => {
-  console.log(items);
-  return (
+export const Home: FC<HomePage> = memo(
+  ({ items }): ReturnComponentType => (
     <div>
       <MapContainer center={defaultPosition} zoom={13} scrollWheelZoom>
         <TileLayer
@@ -24,5 +23,5 @@ export const Home: FC<HomePage> = ({ items }): ReturnComponentType => {
         <Markers items={items} />
       </MapContainer>
     </div>
-  );
-};
+  ),
+);

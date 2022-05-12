@@ -1,17 +1,20 @@
-import { defaultPosition } from 'constants';
+import { defaultPosition, icon } from 'constants';
 
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useCallback, useState } from 'react';
 
-import { LatLngExpression } from 'leaflet';
+import L, { LatLngExpression } from 'leaflet';
 import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet';
+import { v1 } from 'uuid';
 
 import styles from './AddPoint.module.scss';
 
+import { AddedPoint } from 'components';
+import { Form } from 'components/Form';
 import { PlaceType } from 'data';
 import { Nullable, ReturnComponentType } from 'types';
 
 type AddPointProps = {
-  onButtonClick: (marker: PlaceType) => Nullable<void>;
+  onAddMarkerClick: (marker: PlaceType) => Nullable<void>;
 };
 
 /**
@@ -20,34 +23,58 @@ type AddPointProps = {
  * @param {onButtonClick}
  */
 
-export const AddPoint: FC<AddPointProps> = ({ onButtonClick }): ReturnComponentType => {
+export const AddPoint: FC<AddPointProps> = ({
+  onAddMarkerClick,
+}): ReturnComponentType => {
+  /**
+   * states for inputs
+   */
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [coords, setCoords] = useState<LatLngExpression>();
+
+  /**
+   * Conditional render
+   */
   const [isAdded, setIsAdded] = useState(false);
 
-  const handleButtonClick = (): Nullable<void> => {
+  const handleButtonClick = useCallback((): Nullable<void> => {
     if (coords) {
       const newMarker: PlaceType = {
         description,
         name,
         coordinates: coords,
         createdAt: new Date().toString(),
-        placeId: 4,
+        placeId: v1(),
       };
-      onButtonClick(newMarker);
+      onAddMarkerClick(newMarker);
       setName('');
       setDescription('');
       setIsAdded(!isAdded);
     } else {
       console.log('Bad coords');
     }
-  };
+  }, [coords]);
 
-  const GetCoordsHelper = (): null => {
-    useMapEvents({
+  const handleChangeName = useCallback(
+    (e: ChangeEvent<HTMLInputElement>): Nullable<void> => {
+      setName(e.currentTarget.value);
+    },
+    [name],
+  );
+
+  const handleChangeDescription = useCallback(
+    (e: ChangeEvent<HTMLInputElement>): Nullable<void> => {
+      setDescription(e.currentTarget.value);
+    },
+    [description],
+  );
+
+  const GetCoordsHelper = (): Nullable<null> => {
+    const map = useMapEvents({
       click: e => {
         const { lat, lng } = e.latlng;
+        L.marker([lat, lng], { icon }).addTo(map);
         setCoords([lat, lng]);
       },
     });
@@ -55,32 +82,28 @@ export const AddPoint: FC<AddPointProps> = ({ onButtonClick }): ReturnComponentT
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div className={styles.form}>
-        <label htmlFor="name">
-          Name of point
-          <input name="name" />
-        </label>
-        <label htmlFor="description">
-          Description
-          <input name="description" />
-        </label>
-        <button
-          type="button"
-          onClick={handleButtonClick}
-          className={styles.btn}
-          disabled={!name && !description && !coords}
-        >
-          Add mark
-        </button>
-      </div>
-      <MapContainer center={defaultPosition} zoom={13} scrollWheelZoom>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        <Form
+          name={name}
+          handleChangeName={handleChangeName}
+          description={description}
+          handleChangeDescription={handleChangeDescription}
+          handleButtonClick={handleButtonClick}
+          coords={coords}
         />
-        <GetCoordsHelper />
-      </MapContainer>
+      </div>
+      {!isAdded ? (
+        <MapContainer center={defaultPosition} zoom={13} scrollWheelZoom>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <GetCoordsHelper />
+        </MapContainer>
+      ) : (
+        <AddedPoint />
+      )}
     </div>
   );
 };

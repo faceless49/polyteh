@@ -1,0 +1,24 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 20px;
+
+  .subtitle {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .btn {
+    color: #fff;
+    background-color: red;
+    border-radius: 10px;
+    padding: 6px 20px;
+
+    &:hover {
+      background-color: darkred;
+      transition: background-color ease 0.3s;
+    }
+  }
+}
