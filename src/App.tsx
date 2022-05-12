@@ -31,7 +31,7 @@ const App = (): ReturnComponentType => {
     <div className="container">
       <Navigation />
       <Routes>
-        <Route path="/" element={<Home items={markers} />} />
+        <Route path="/polyteh" element={<Home items={markers} />} />
         <Route
           path="/addpoint"
           element={<AddPoint onAddMarkerClick={handleMarkerPost} />}
