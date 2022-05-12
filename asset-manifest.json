@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/polyteh/static/css/main.5aba1a7c.css",
+    "main.js": "/polyteh/static/js/main.32ba9b78.js",
+    "index.html": "/polyteh/index.html",
+    "main.5aba1a7c.css.map": "/polyteh/static/css/main.5aba1a7c.css.map",
+    "main.32ba9b78.js.map": "/polyteh/static/js/main.32ba9b78.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5aba1a7c.css",
+    "static/js/main.32ba9b78.js"
+  ]
+}
