@@ -93,7 +93,9 @@ export const AddPoint: FC<AddPointProps> = ({
           coords={coords}
         />
       </div>
-      {!isAdded ? (
+      {isAdded ? (
+        <AddedPoint />
+      ) : (
         <>
           <h3 className={styles.subtitle}>
             Please click on the map for choose location popup
@@ -106,8 +108,6 @@ export const AddPoint: FC<AddPointProps> = ({
             <GetCoordsHelper />
           </MapContainer>
         </>
-      ) : (
-        <AddedPoint />
       )}
     </div>
   );
