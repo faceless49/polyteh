@@ -17,7 +17,7 @@ export const CardPoint: FC<CardPointProps> = memo(({ item, onButtonClick }) => {
     <div className={styles.card}>
       <h4 className={styles.subtitle}>{item.name}</h4>
       <p>Description: {item.description}</p>
-      <span>Created at: {item.createdAt}</span>
+      <span>Created at: {item.createdAt.toString()}</span>
       <span>Coordinates: {coordinates}</span>
       <button
         type="button"

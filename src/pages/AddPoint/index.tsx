@@ -44,7 +44,7 @@ export const AddPoint: FC<AddPointProps> = ({
         description,
         name,
         coordinates: coords,
-        createdAt: new Date().toString(),
+        createdAt: new Date(),
         placeId: v1(),
       };
       onAddMarkerClick(newMarker);
@@ -85,6 +85,7 @@ export const AddPoint: FC<AddPointProps> = ({
     <div className={styles.wrapper}>
       <div className={styles.form}>
         <Form
+          disabled={isAdded}
           name={name}
           handleChangeName={handleChangeName}
           description={description}

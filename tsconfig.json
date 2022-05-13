@@ -8,7 +8,7 @@
       "esnext"
     ],
     "types": ["webpack-env"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

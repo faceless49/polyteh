@@ -7,7 +7,7 @@ import { LatLngExpression } from 'leaflet';
 export type PlaceType = {
   placeId: string;
   name: string;
-  createdAt: string;
+  createdAt: Date;
   description: string;
   coordinates: LatLngExpression;
 };

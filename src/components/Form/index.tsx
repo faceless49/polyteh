@@ -12,6 +12,7 @@ type FormProps = {
   handleChangeDescription: (e: ChangeEvent<HTMLInputElement>) => Nullable<void>;
   handleButtonClick: () => Nullable<void>;
   coords: LatLngExpression | undefined;
+  disabled: boolean;
 };
 
 export const Form: FC<FormProps> = memo(
@@ -22,6 +23,7 @@ export const Form: FC<FormProps> = memo(
     description,
     handleButtonClick,
     coords,
+    disabled,
   }): ReturnComponentType => (
     <>
       <label htmlFor="name">
@@ -32,6 +34,7 @@ export const Form: FC<FormProps> = memo(
           onChange={handleChangeName}
           placeholder="Please enter name of point"
           required
+          disabled={disabled}
         />
       </label>
       <label htmlFor="description">
@@ -42,6 +45,7 @@ export const Form: FC<FormProps> = memo(
           value={description}
           onChange={handleChangeDescription}
           placeholder="Please enter description"
+          disabled={disabled}
         />
       </label>
       <button
