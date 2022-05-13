@@ -13,7 +13,7 @@ export const Markers: FC<PointsProps> = memo(({ items }) => (
   <>
     {items.map(({ description, createdAt, name, coordinates, placeId }) => (
       <Marker position={coordinates} key={placeId} icon={icon}>
-        <Popup>
+        <Popup autoClose closeButton closeOnEscapeKey>
           <div>
             <h2>{`Name: ${name}`}</h2>
             <p>{`CreatedAt: ${createdAt}`}</p>

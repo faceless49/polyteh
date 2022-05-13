@@ -74,6 +74,7 @@ export const AddPoint: FC<AddPointProps> = ({
       click: e => {
         const { lat, lng } = e.latlng;
         L.marker([lat, lng], { icon }).addTo(map);
+
         setCoords([lat, lng]);
       },
     });
