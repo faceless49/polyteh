@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/polyteh/static/css/main.0d0169f7.css",
-    "main.js": "/polyteh/static/js/main.74537fa7.js",
+    "main.js": "/polyteh/static/js/main.828909ab.js",
     "index.html": "/polyteh/index.html",
     "main.0d0169f7.css.map": "/polyteh/static/css/main.0d0169f7.css.map",
-    "main.74537fa7.js.map": "/polyteh/static/js/main.74537fa7.js.map"
+    "main.828909ab.js.map": "/polyteh/static/js/main.828909ab.js.map"
   },
   "entrypoints": [
     "static/css/main.0d0169f7.css",
-    "static/js/main.74537fa7.js"
+    "static/js/main.828909ab.js"
   ]
 }
