@@ -6,7 +6,7 @@ import { Nullable, ReturnComponentType } from 'types';
 
 type PointsListPageProps = {
   items: PlaceType[];
-  onRemoveMarkerClick: (id: string) => Nullable<void>;
+  onRemoveMarkerClick: (placeId: string) => Nullable<void>;
 };
 
 /**

@@ -8,7 +8,6 @@ import { v1 } from 'uuid';
 
 import styles from './AddPoint.module.scss';
 
-import { AddedPoint } from 'components';
 import { Form } from 'components/Form';
 import { PlaceType } from 'data';
 import { Nullable, ReturnComponentType } from 'types';
@@ -38,7 +37,7 @@ export const AddPoint: FC<AddPointProps> = ({
    */
   const [isAdded, setIsAdded] = useState(false);
 
-  const handleButtonClick = useCallback((): Nullable<void> => {
+  const handleButtonClick = (): Nullable<void> => {
     if (coords) {
       const newMarker: PlaceType = {
         description,
@@ -54,7 +53,7 @@ export const AddPoint: FC<AddPointProps> = ({
     } else {
       console.log('Bad coords');
     }
-  }, [coords]);
+  };
 
   const handleChangeName = useCallback(
     (e: ChangeEvent<HTMLInputElement>): Nullable<void> => {
@@ -95,7 +94,7 @@ export const AddPoint: FC<AddPointProps> = ({
         />
       </div>
       {isAdded ? (
-        <AddedPoint />
+        <div>Point is added. Please return to main page.</div>
       ) : (
         <>
           <h3 className={styles.subtitle}>

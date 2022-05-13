@@ -22,10 +22,13 @@ const App = (): ReturnComponentType => {
     setMarkers(prevState => [...prevState, marker]);
   }, []);
 
-  const handleMarkerDelete = useCallback((id: string): Nullable<void> => {
-    const filteredMarkers = markers.filter(({ placeId }) => placeId !== id);
-    setMarkers(filteredMarkers);
-  }, []);
+  const handleMarkerDelete = useCallback(
+    (id: string): Nullable<void> => {
+      const filteredMarkers = markers.filter(({ placeId }) => placeId !== id);
+      setMarkers(filteredMarkers);
+    },
+    [markers],
+  );
 
   return (
     <div className="container">
